@@ -1,0 +1,185 @@
+---
+
+---
+
+<nav class="navbar" aria-label="Main Navigation">
+  <div class="brand">
+    <a href="/">Loizaga Psikosalud</a>
+  </div>
+
+  <input type="checkbox" id="nav-toggle" class="visually-hidden" />
+
+  <label
+    for="nav-toggle"
+    class="toggle-menu"
+    aria-label="Toggle navigation menu"
+  >
+    <svg
+      class="hamburger-svg"
+      viewBox="0 0 100 80"
+      width="30"
+      height="30"
+      aria-hidden="true"
+    >
+      <rect width="100" height="15"></rect>
+      <rect y="30" width="100" height="15"></rect>
+      <rect y="60" width="100" height="15"></rect>
+    </svg>
+  </label>
+  <ul class="menu">
+    <li><a href="/" tabindex="0">Inicio</a></li>
+    <li><a href="/services" tabindex="0">Servicios</a></li>
+    <li><a href="/about" tabindex="0">Sobre Nosotros</a></li>
+    <li><a href="/contact" tabindex="0">Contacto</a></li>
+  </ul>
+</nav>
+
+<style>
+  /* Base */
+  .navbar {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: inherit;
+    flex-wrap: wrap;
+    background-color: #000000;
+    color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .brand {
+    margin: auto;
+    padding: 2dvh 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .brand a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+  }
+
+  .brand:visited {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  /* Ocultar checkbox visualmente pero accesible */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  #nav-toggle {
+    display: none; /* Oculta el checkbox */
+  }
+
+  /* Desktop: menú horizontal */
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; /* Ocupa todo el ancho */
+    padding: 2dvh;
+    margin: 2dvh;
+    list-style: none;
+    flex-direction: row; /* Por defecto, los elementos se organizan en fila */
+    gap: 0.5rem; /* Espacio entre los elementos del menú */
+    transition: all 0.3s ease; /* Transición suave para el menú */
+  }
+
+  .menu li {
+    flex: 1; /* Hace que todos los li tengan el mismo ancho */
+    text-align: center; /* Centra el texto dentro de cada li */
+  }
+
+  .menu a {
+    display: block; /* Hace que todo el li sea clickable */
+    padding: 15px; /* Espaciado interno */
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  .menu a:focus {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  .menu a:hover {
+    text-decoration: none;
+  }
+
+  /* Toogle icon oculto en Desktop*/
+  .toggle-menu {
+    display: none;
+    right: 2dvh;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 0;
+  }
+
+  .hamburger-svg {
+    width: 34px;
+    height: 34px;
+    display: block;
+    margin: 2dvh; /* Espaciado vertical para el menú desplegable */
+  }
+
+  /* Estado normal: sin transformaciones (hamburguesa) */
+  .hamburger-svg rect {
+    fill: white; /* Ahora los rectángulos serán blancos */
+    transform-box: fill-box; /* Asegura que las transformaciones se apliquen al centro de cada rectángulo */
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
+    transform-origin: center; /* rota desde el centro de cada rect */
+  }
+
+  /* Cuando el checkbox está marcado: convierte en X */
+  #nav-toggle:checked ~ .toggle-menu .hamburger-svg rect:nth-child(1) {
+    transform: translateY(200%) rotate(45deg);
+    /* 200% de la altura del rect (15) = 30 unidades → baja hasta el centro */
+  }
+
+  #nav-toggle:checked ~ .toggle-menu .hamburger-svg rect:nth-child(2) {
+    opacity: 0;
+  }
+
+  #nav-toggle:checked ~ .toggle-menu .hamburger-svg rect:nth-child(3) {
+    transform: translateY(-200%) rotate(-45deg);
+  }
+
+  /* Responsive */
+  @media screen and (max-width: 600px) {
+    .toggle-menu {
+      display: block; /* Muestra el menú cuando el toggle está activo */
+      z-index: 20; /* Asegura que el toggle esté por encima del menú */
+    }
+    .menu {
+      position: absolute;
+      display: none; /* Oculta el menú en pantallas pequeñas */
+      flex-direction: column;
+      top: 100%;
+      background-color: #000000;
+    }
+    #nav-toggle:checked ~ .menu {
+      display: flex; /* Muestra el menú cuando el toggle está activo */
+      margin: auto;
+    }
+  }
+</style>
