@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Astro check
-        run: pnpm astro check
+        run: npm astro check
 
       - name: Astro build
-        run: pnpm astro build
+        run: npm astro build
